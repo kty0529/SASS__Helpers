@@ -1,6 +1,4 @@
-/**
-* Media query
-*/
+// 반응형 미디어쿼리
 @mixin max-w($attr) {
 	@media all and (max-width: #{$attr}px) {
 		@content;
@@ -17,27 +15,8 @@
 	}
 }
 
-@mixin desktop {
-	@include min-w(#{$desktop}) {
-		@content;
-	}
-}
 
-@mixin tablet {
-	@include max-w(#{$tablet}) {
-		@content;
-	}
-}
-
-@mixin mobile {
-	@include max-w(#{$mobile}) {
-		@content;
-	}
-}
-
-/**
-* Position
-*/
+// 포지션 관련
 @mixin fullscreen($z: 1, $p: 'absolute') {
 	position: #{$p};
 	top: 0;
@@ -70,9 +49,7 @@
 	}
 }
 
-/**
-* Image
-*/
+// 이미지 관련
 @mixin retina-bgi($uri, $extension) {
 	background-image: url('#{$uri}.#{$extension}');
 
@@ -81,10 +58,8 @@
 	}
 }
 
-/**
-* Cross Browsing
-* https://unto.kr/blog/coding-info/only-ie-css/
-*/
+// 크로스 브라우징
+// https://unto.kr/blog/coding-info/only-ie-css/
 @mixin IE {
 	/* IE10+ */
 	@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
@@ -92,9 +67,8 @@
 	}
 }
 
-/**
-* Others
-*/
+
+// 기타 mixin
 @mixin clearfix {
 	&:after {
 		content: ' ';
