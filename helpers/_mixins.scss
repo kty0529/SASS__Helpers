@@ -1,20 +1,49 @@
 // 반응형 미디어쿼리
 @mixin max-w($attr) {
-	@media all and (max-width: #{$attr}px) {
+	@media all and (max-width: #{$attr}) {
 		@content;
 	}
 }
 @mixin min-w($attr) {
-	@media all and (min-width: #{$attr}px) {
+	@media all and (min-width: #{$attr}) {
 		@content;
 	}
 }
 @mixin min-max-w($min, $max) {
-	@media all and (min-width: #{$min}px) and (max-width: #{$max}px) {
+	@media all and (min-width: #{$min}) and (max-width: #{$max}) {
 		@content;
 	}
 }
 
+@mixin tablet($width: '') {
+	@if $width == '' {
+		$width: $tablet;
+	}
+
+	@include max-w($width) {
+		@content;
+	}
+}
+
+@mixin mobile($width: '') {
+	@if $width == '' {
+		$width: $mobile;
+	}
+
+	@include max-w($width) {
+		@content;
+	}
+}
+
+@mixin small($width: '') {
+	@if $width == '' {
+		$width: $small;
+	}
+
+	@include max-w($width) {
+		@content;
+	}
+}
 
 // 포지션 관련
 @mixin fullscreen($z: 1, $p: 'absolute') {
@@ -34,14 +63,12 @@
 		bottom: 0;
 		left: 0;
 		margin: auto;
-	}
-	@else if #{$p} == 'vertical' {
+	} @else if #{$p} == 'vertical' {
 		position: absolute;
 		top: 0;
 		bottom: 0;
 		margin: auto 0;
-	}
-	@else if #{$p} == 'horizontal' {
+	} @else if #{$p} == 'horizontal' {
 		position: absolute;
 		right: 0;
 		left: 0;
@@ -53,7 +80,10 @@
 @mixin retina-bgi($uri, $extension) {
 	background-image: url('#{$uri}.#{$extension}');
 
-	@media all and (-webkit-min-device-pixel-ratio: 1.5), all and (-o-min-device-pixel-ratio: 3/2), all and (min--moz-device-pixel-ratio: 1.5), all and (min-device-pixel-ratio: 1.5) {
+	@media all and (-webkit-min-device-pixel-ratio: 1.5),
+		all and (-o-min-device-pixel-ratio: 3/2),
+		all and (min--moz-device-pixel-ratio: 1.5),
+		all and (min-device-pixel-ratio: 1.5) {
 		background-image: url('#{$uri}@2x.#{$extension}');
 	}
 }
@@ -61,12 +91,11 @@
 // 크로스 브라우징
 // https://unto.kr/blog/coding-info/only-ie-css/
 @mixin IE {
-	/* IE10+ */
+	// IE10 이상에서만 작동되게
 	@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
 		@content;
 	}
 }
-
 
 // 기타 mixin
 @mixin clearfix {
@@ -83,8 +112,7 @@
 		user-select: none;
 		pointer-events: none;
 		touch-action: none;
-	}
-	@else {
+	} @else {
 		user-select: auto;
 		pointer-events: auto;
 		touch-action: auto;
@@ -120,10 +148,9 @@
 	display: -webkit-box;
 	-webkit-line-clamp: $line;
 	-webkit-box-orient: vertical;
-	@if ( $boxHeight ) == 'fixed' {
+	@if ($boxHeight) == 'fixed' {
 		height: $lineHeight * $line;
-	}
-	@else {
+	} @else {
 		max-height: $lineHeight * $line;
 		height: auto;
 	}

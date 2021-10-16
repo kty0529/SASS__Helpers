@@ -1,2 +1,1 @@
-# SASS-Mixins
-SASS Mixin 저장소
+개인적으로 프로젝트에 사용하는 SASS Helpers 옵션 저장소입니다.
